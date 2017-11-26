@@ -16,3 +16,18 @@ def init_views(app):
     @app.route('/')
     def index():
         return flask.render_template("app.html")
+
+    @app.route('/status')
+    def status():
+        test_cases = [{
+            "value": True,
+            "id": 1,
+            "mode": "manual",
+        }]
+
+        response = app.response_class(
+            response=flask.json.dumps(test_cases),
+            status=200,
+            mimetype='application/json'
+        )
+        return response
